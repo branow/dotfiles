@@ -19,7 +19,7 @@ Instead of storing the real file there, I:
 Example:
 
 ```
-~/.tmux.conf → ~/dotfiles/tmux.conf
+~/.tmux.conf → ~/dotfiles/.tmux.conf
 ```
 
 So when `tmux` reads `~/.tmux.conf`, it actually loads the file from this repository.
