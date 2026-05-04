@@ -30,7 +30,7 @@ So when `tmux` reads `~/.tmux.conf`, it actually loads the file from this reposi
 
 ```
 dotfiles/
-  tmux.conf
+  .tmux.conf
   README.md
 ```
 
@@ -49,7 +49,7 @@ git clone <your-repo-url> ~/dotfiles
 ### 2. Create symlink for tmux
 
 ```bash
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ```
 
 ---
@@ -68,7 +68,7 @@ Then commit and push:
 
 ```bash
 cd ~/dotfiles
-git add tmux.conf
+git add .tmux.conf
 git commit -m "Update tmux config"
 git push
 ```
@@ -94,7 +94,7 @@ ls -l ~/.tmux.conf
 Expected output:
 
 ```
-.tmux.conf -> /Users/<you>/dotfiles/tmux.conf
+.tmux.conf -> /Users/<you>/dotfiles/.tmux.conf
 ```
 
 ---
