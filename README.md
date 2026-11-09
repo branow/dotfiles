@@ -12,6 +12,7 @@ dotfiles/
   ghostty/      config
   git/          .gitconfig
   hammerspoon/  init.lua
+  claude/       settings.json (Claude Code: model, theme, notification hook)
   wallpapers/   Cloudsnight.jpg
   macos.md      macOS settings to apply by hand
 ```
@@ -38,7 +39,11 @@ ln -s ~/dotfiles/ghostty/config ~/.config/ghostty/config
 ln -s ~/dotfiles/git/.gitconfig ~/.gitconfig
 mkdir -p ~/.hammerspoon
 ln -s ~/dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
+mkdir -p ~/.claude
+cp ~/dotfiles/claude/settings.json ~/.claude/settings.json
 ```
+
+`claude/settings.json` is copied, not symlinked: Claude Code rewrites it (plugins, runtime state). The notification hook needs `terminal-notifier` (brew).
 
 If a tool installer already created one of these files, delete it first (`rm ~/.zshrc`), then run its `ln -s` line.
 

@@ -1,0 +1,25 @@
+{
+  "model": "opus",
+  "effortLevel": "high",
+  "theme": "dark-ansi",
+  "tui": "fullscreen",
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); PROJECT=$(echo \"$INPUT\" | jq -r .cwd | xargs basename); MSG=$(echo \"$INPUT\" | jq -r .message); [ \"$MSG\" = \"null\" -o -z \"$MSG\" ] && MSG=\"Needs your attention\"; terminal-notifier -title \"Claude Code: $PROJECT\" -message \"$MSG\" -sound Glass'"
+          }
+        ]
+      }
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "skipWorkflowUsageWarning": true
+}
