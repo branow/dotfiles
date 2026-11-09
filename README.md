@@ -1,122 +1,60 @@
-# Dotfiles Repository
+# Dotfiles
 
-This repository stores my personal configuration files (dotfiles), such as `tmux`, shell configs, and other tools.
-The goal is to keep them version-controlled and easily synced across machines.
+Personal configuration files. Each real file lives in this repo; the home directory holds a symlink to it, so editing either path edits the repo copy.
 
----
-
-## 🧠 How it works
-
-Some programs (like `tmux`) expect their config files in specific locations, for example:
-
-* `~/.tmux.conf`
-
-Instead of storing the real file there, I:
-
-1. Keep the **actual file inside this repo**
-2. Create a **symlink (symbolic link)** in the home directory
-
-Example:
-
-```
-~/.tmux.conf → ~/dotfiles/.tmux.conf
-```
-
-So when `tmux` reads `~/.tmux.conf`, it actually loads the file from this repository.
-
----
-
-## 📁 Structure
+## Structure
 
 ```
 dotfiles/
   .tmux.conf
-  README.md
+  zsh/          .zshrc .zprofile .zshenv .p10k.zsh
+  bash/         .bash_profile
+  ghostty/      config
+  git/          .gitconfig
+  hammerspoon/  init.lua
+  wallpapers/   Cloudsnight.jpg
+  macos.md      macOS settings to apply by hand
 ```
 
-(Will expand as more configs are added.)
+## Setup on a new machine
 
----
+1. Clone:
 
-## 🔧 Setup on a new machine
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url> ~/dotfiles
+```
+git clone git@github.com:branow/dotfiles.git ~/dotfiles
 ```
 
-### 2. Create symlink for tmux
+2. Create the symlinks (one line at a time):
 
-```bash
+```
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+ln -s ~/dotfiles/zsh/.zprofile ~/.zprofile
+ln -s ~/dotfiles/zsh/.zshenv ~/.zshenv
+ln -s ~/dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+ln -s ~/dotfiles/bash/.bash_profile ~/.bash_profile
+mkdir -p ~/.config/ghostty
+ln -s ~/dotfiles/ghostty/config ~/.config/ghostty/config
+ln -s ~/dotfiles/git/.gitconfig ~/.gitconfig
+mkdir -p ~/.hammerspoon
+ln -s ~/dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
 ```
 
----
+If a tool installer already created one of these files, delete it first (`rm ~/.zshrc`), then run its `ln -s` line.
 
-## 🔄 Updating config
+3. Apply `macos.md`.
 
-Edit the file normally (either path works):
+`.gitconfig` includes `~/.gitconfig.local` for machine-specific settings; that file is not in this repo.
 
-```bash
-nano ~/.tmux.conf
-# or
-nano ~/dotfiles/tmux.conf
+## Updating
+
+Edit the file at either path, then:
+
 ```
-
-Then commit and push:
-
-```bash
 cd ~/dotfiles
-git add .tmux.conf
-git commit -m "Update tmux config"
+git add -A
+git commit -m "Update <tool> config"
 git push
 ```
 
----
-
-## 🔁 Reload tmux config
-
-Inside a tmux session:
-
-```bash
-tmux source-file ~/.tmux.conf
-```
-
----
-
-## 🔍 Verify symlink
-
-```bash
-ls -l ~/.tmux.conf
-```
-
-Expected output:
-
-```
-.tmux.conf -> /Users/<you>/dotfiles/.tmux.conf
-```
-
----
-
-## ⚠️ Notes
-
-* If `~/.tmux.conf` already exists, remove it before creating the symlink:
-
-  ```bash
-  rm ~/.tmux.conf
-  ```
-* Never initialize a Git repository in the home directory (`~`)
-
----
-
-## 💡 Future additions
-
-* `.zshrc`
-* `.gitconfig`
-* Neovim config
-* Other tool configs
-
-All managed the same way: **store here → symlink to home directory**
-
----
+Reload tmux inside a session: `tmux source-file ~/.tmux.conf`.

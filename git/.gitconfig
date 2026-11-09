@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Orest Bodnar
+	email = branow.code@gmail.com
+[core]
+	excludesfile = /Users/orest/.gitignore
+[alias]
+	lga = log --graph --abbrev-commit --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset' --all
+	lg = log --graph --abbrev-commit --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset'
+[credential]
+	helper = osxkeychain
+
+
+# Machine-specific settings, kept out of this repo
+[include]
+	path = ~/.gitconfig.local
