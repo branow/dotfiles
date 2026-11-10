@@ -3,7 +3,7 @@ font-size = 13
 font-thicken = true
 adjust-cell-height = 10%
 
-theme = dark:catppuccin-mocha,light:catppuccin-latte
+theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 background-opacity = 0.92
 background-blur-radius = 20
 
